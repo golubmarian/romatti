@@ -1,8 +1,14 @@
 from flask import Flask, request
 import requests
 import ast
+import os
+from dotenv import load_dotenv, find_dotenv
 
-application = Flask(__name__)  # test
+
+application = Flask(__name__)
+load_dotenv(find_dotenv())  # поиск переменных окружения
+webhook_hash = os.getenv('HASH')
+# print(webhook_hash)
 
 
 @application.route('/', methods=['POST'])
@@ -16,47 +22,37 @@ def webhook():
 
 def send_email(email, gift):
     if gift == '500':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9602/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9602/?email={email}&hash={webhook_hash}'
         )
-        print(f'500 {response}')
     elif gift == '1000':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9603/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9603/?email={email}&hash={webhook_hash}'
         )
-        print(f'1000 {response}')
     elif gift == '2000':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9605/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9605/?email={email}&hash={webhook_hash}'
         )
-        print(f'2000 {response}')
     elif gift == '5':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9606/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9606/?email={email}&hash={webhook_hash}'
         )
-        print(f'5 {response}')
     elif gift == '7':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9607/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9607/?email={email}&hash={webhook_hash}'
         )
-        print(f'7 {response}')
     elif gift == '10':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9608/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9608/?email={email}&hash={webhook_hash}'
         )
-        print(f'10 {response}')
     elif gift == 'gift':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9609/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9609/?email={email}&hash={webhook_hash}'
         )
-        print(f'gift {response}')
     elif gift == 'no':
-        response = requests.get(
-            f'https://mailganer.com/app/trigger/webhook/9610/?email={email}&hash=Romatti2023$'
+        requests.get(
+            f'https://mailganer.com/app/trigger/webhook/9610/?email={email}&hash={webhook_hash}'
         )
-        print(f'no {response}')
-    else:
-        print('no')
 
 
 if __name__ == '__main__':          # запуск локально
