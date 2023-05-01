@@ -2,22 +2,20 @@ from flask import Flask, request
 import requests
 import ast
 import os
-# from dotenv import load_dotenv, find_dotenv
 
 
-application = Flask(__name__)
-# load_dotenv(find_dotenv())  # поиск переменных окружения
+app = Flask(__name__)
 webhook_hash = os.getenv('HASH')
-# print(webhook_hash)
 
 
-@application.route('/', methods=['POST'])
+@app.route('/', methods=['POST'])
 def webhook():
     data = request.data.decode()
     email = ast.literal_eval(data)['email']
     gift = ast.literal_eval(data)['gift']
     send_email(email, gift)
     return 'ok'
+    # return f'ok {webhook_hash}'
 
 
 def send_email(email, gift):
@@ -56,7 +54,7 @@ def send_email(email, gift):
 
 
 if __name__ == '__main__':
-    application.run(debug=True)  # вывод ошибок
+    app.run(debug=True)  # вывод ошибок
 
 
 

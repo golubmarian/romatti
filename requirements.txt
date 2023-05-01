@@ -1,3 +1,2 @@
-flask
-requests
-ast
+flask~=2.3.1
+requests~=2.29.0
