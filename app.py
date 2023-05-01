@@ -2,11 +2,11 @@ from flask import Flask, request
 import requests
 import ast
 import os
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 
 
 application = Flask(__name__)
-load_dotenv(find_dotenv())  # поиск переменных окружения
+# load_dotenv(find_dotenv())  # поиск переменных окружения
 webhook_hash = os.getenv('HASH')
 # print(webhook_hash)
 
@@ -55,8 +55,8 @@ def send_email(email, gift):
         )
 
 
-if __name__ == '__main__':          # запуск локально
-    application.run(debug=True)     # вывод ошибок
+if __name__ == '__main__':
+    application.run(debug=True)  # вывод ошибок
 
 
 
